@@ -13,15 +13,12 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker images...
-      - docker-compose build
+      - docker-compose -f docker-compose.yml build
       - docker-compose push
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
-      - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - echo Writing image definitions file...
-      - printf '[{"name":"node-hello","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - docker-compose -f docker-compose.yml push
 artifacts:
   files: imagedefinitions.json
