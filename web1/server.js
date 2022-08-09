@@ -17,7 +17,3 @@ app.get('/', function(req, res) {
         redisClient.set('numVisits', numVisits);
     });
 });
-
-app.listen(3000, function() {
-    console.log('Web application is listening on port 5000');
-});
