@@ -3,13 +3,13 @@ services:
   redis:
     restart: on-failure
     build: ./redis
-    image: "963982835422.dkr.ecr.us-east-1.amazonaws.com/redis"
+    image: "${REPOSITORY_URI}/redis:${IMAGE_TAG}"
     ports:
       - '6379:6379'
   web1:
     restart: on-failure
     build: ./web1
-    image: "963982835422.dkr.ecr.us-east-1.amazonaws.com/node-hello"
+    image: "${REPOSITORY_URI}/node-hello:${IMAGE_TAG}"
     ports:
       - '3000:3000'
 
