@@ -20,7 +20,10 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker-compose -f docker-compose.yml push
-      - printf '[{"name":"node-hello","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - docker push $REPOSITORY_URI/node-hello:latest
+      - docker push $REPOSITORY_URI/node-hello:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/redis:latest
+      - docker push $REPOSITORY_URI/redis:$IMAGE_TAG
+      - printf '[{"name":"node-hello","imageUri":"%s"}]' $REPOSITORY_URI/node-hello:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files: imagedefinitions.json
